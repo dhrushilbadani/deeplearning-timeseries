@@ -4,7 +4,7 @@ This Python project uses LSTM (Long Short-Term Memory) and GRU (Gated Recurrent 
 <b>Dataset:</b> <a href = "https://datamarket.com/data/set/235j/number-of-daily-births-in-quebec-jan-01-1977-to-dec-31-1990#!ds=235j&display=line"> Number of daily births in Quebec, Jan. 01 '77 - Dec. 31 '90 (Hipel & McLeod, 1994) </a>
 
 ##Usage
-I suggest you install [Virtualenv](https://virtualenv.pypa.io/en/stable/) before trying this out. You will need [matplotlib](matplotlib.org) for the plotting as well (this doesn't work too well with [virtual environments](http://matplotlib.org/faq/virtualenv_faq.html), though).
+I suggest you install [Virtualenv](https://virtualenv.pypa.io/en/stable/) before trying this out.
 ```
 git clone https://github.com/dhrushilbadani/deeplearning-timeseries.git
 cd deeplearning-timeseries
@@ -17,20 +17,20 @@ python evaluate.py
 
 
 ##Architecture & Model Properties
-We use Keras' [Sequential](https://keras.io/models/sequential/) model to construct a recurrent neural network. There are only two layers:
+We use Keras' [Sequential](https://keras.io/models/sequential/) model to construct recurrent neural networks. There are 3 layers:
 <ul>
-<li> Layer 1 : Either a LSTM (with output dimension 4,  and statefulness enabled) layer or a GRU (with output dimension 4) layer.
-<li> Layer 2 : A fully-connected Dense Layer with output dimension 1. </li>
-<li> Default optimizer: Adam; Default # of epochs: 100. </li>
-<li> Feature Normalization: 0-1 Minmax Normalization. </li>
-<li> Accuracy Metric: Root Mean Squared Error. </li>
+<li> Layer 1 : Either a LSTM (with output dimension 10,  and statefulness enabled) layer or a GRU (with output dimension 10) layer.</li>
+<li> Layer 2 : A Dropout layer with dropout probability = 0.2, to prevent overfitting. </li>
+<li> Layer 3 : A fully-connected Dense Layer with output dimension 1. </li>
+<li> Default optimizer: rmsprop; Default # of epochs: 150. </li>
+<li> Accuracy Metric: Mean Squared Error. </li>
 </ul>
-<i>This architecture can certainly further be optimized - I just haven't had the chance to experiment thanks to my laptop's constraints! </i>
+<i>This architecture can certainly further be optimized - I just haven't had the chance to experiment too much thanks to my laptop's constraints! </i>
 
 ##Results & Observations
-1. The GRU-RNN model performed the best with a RMSE of 156.413731922 (look back = 34).
+1. The LSTM-RNN model performed the best with a MSE of 1464.78 (look back = 37).
 2. Naively making the RNN "deeper" did not yield immediate results; I didn't fine-tune the parameters (output_dim, for example) though. 
-3. Making the LSTM network stateful (setting ```stateful=true``` when initializing the LSTM layer) did yield a slight performance improvement though. 
+3. Making the LSTM network stateful (setting ```stateful=true``` when initializing the LSTM layer) did yield a significant performance improvement though. 
 4. Using Glorot initializations yielded a performance improvement. However, using He uniform initialization (Gaussian initialization scaled by fan_in) yielded even better results than with Glorot.
 
 ##Files
