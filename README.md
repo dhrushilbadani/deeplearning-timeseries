@@ -30,13 +30,14 @@ We use Keras' [Sequential](https://keras.io/models/sequential/) model to constru
 ##Results & Observations
 1. The LSTM-RNN model performed the best with a MSE of 1464.78 (look back = 37).
 2. Naively making the RNN "deeper" did not yield immediate results; I didn't fine-tune the parameters (output_dim, for example) though. 
-3. Making the LSTM network stateful (setting ```stateful=true``` when initializing the LSTM layer) did yield a significant performance improvement though. 
+3. Making the LSTM network stateful (setting ```stateful=true``` when initializing the LSTM layer) did yield a significant performance improvement though. In stateless LSTM layers, the cell states are reset at each sequence. When ```stateful=true``` however, the states are propagated onto the next batch i.e. the state of the sample located at index ```trainX[i]``` will be used in the computation of the sample ```trainX[i+k]``` in the next batch, where ```k``` is the batch size. You can read more about this at the [Keras docs](https://keras.io/getting-started/faq/#how-can-i-use-stateful-rnns).
 4. Using Glorot initializations yielded a performance improvement. However, using He uniform initialization (Gaussian initialization scaled by fan_in) yielded even better results than with Glorot.
 
 ##Files
 
 <li>```data/number-of-daily-births-in-quebec.csv``` : Dataset. </li>
-<li> ```rnnmodel.py```: Model for LSTM/GRU-based Recurrent Neural Networks. </li>
+<li> ```lstm_model.py```: Contains the class ```LSTM_RNN``` for LSTM-based Recurrent Neural Networks. </li>
+<li> ```gru_model.py```: Contains the class ```GRU_RNN``` for GRU-based Recurrent Neural Networks. </li>
 <li>  ```evaluate.py```: Loads and preprocesses the dataset, creates LSTM-RNN, GRU-RNN and Linear Regression models, and outputs results. </li>
 
 
