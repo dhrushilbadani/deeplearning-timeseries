@@ -19,7 +19,7 @@ python evaluate.py
 ##Architecture & Model Properties
 We use Keras' [Sequential](https://keras.io/models/sequential/) model to construct recurrent neural networks. There are 3 layers:
 <ul>
-<li> Layer 1 : Either a LSTM (with output dimension 10,  and statefulness enabled) layer or a GRU (with output dimension 10) layer.</li>
+<li> Layer 1 : Either a LSTM (with output dimension 10,  and statefulness enabled) layer or a GRU (with output dimension 4) layer.</li>
 <li> Layer 2 : A Dropout layer with dropout probability = 0.2, to prevent overfitting. </li>
 <li> Layer 3 : A fully-connected Dense Layer with output dimension 1. </li>
 <li> Default optimizer: rmsprop; Default # of epochs: 150. </li>
