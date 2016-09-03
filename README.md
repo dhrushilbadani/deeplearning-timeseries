@@ -40,5 +40,9 @@ We use Keras' [Sequential](https://keras.io/models/sequential/) model to constru
 <li> ```gru_model.py```: Contains the class ```GRU_RNN``` for GRU-based Recurrent Neural Networks. </li>
 <li>  ```evaluate.py```: Loads and preprocesses the dataset, creates LSTM-RNN, GRU-RNN and Linear Regression models, and outputs results. </li>
 
-
+##References
+1. [On the use of ‘Long-Short Term Memory’ neural networks for time series prediction](https://ccc.inaoep.mx/~pgomez/conferences/PggISCI14.pdf), Gomez-Git et. al, 2014.
+2. [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf), Srivastava et. al 2014.
+4. [Learning to forget](http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015), Gers, Schmidhuber & Cummins, 2000.
+5. [Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling](http://arxiv.org/pdf/1412.3555v1.pdf), Chung et. al, 2014.
 
